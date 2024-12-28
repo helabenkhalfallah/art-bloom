@@ -90,7 +90,14 @@ project/
 ├── backend/            # Django backend application
 │   ├── manage.py       # Entry point for Django commands
 │   ├── settings.py     # Django project settings
-│   └── app/            # Main Django app folder
+│   ├── artworks/       # Django app for artworks
+│   │   ├── models.py
+│   │   ├── views.py
+│   │   └── urls.py
+│   └── users/          # Django app for user management
+│       ├── models.py
+│       ├── views.py
+│       └── urls.py
 │
 ├── frontend/           # React frontend application
 │   ├── dist/           # Vite production build output
