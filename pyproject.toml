@@ -1,0 +1,4 @@
+[tool.aerich]
+tortoise_orm = "artworks_settings.tortoise_config_wrapper.TORTOISE_ORM"
+location = "./migrations"
+src_folder = "./."

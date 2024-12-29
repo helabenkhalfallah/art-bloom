@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+sanic = "*"
+tortoise-orm = "*"
+aerich = "*"
+asyncpg = "*"
+psycopg = "*"
+psycopg-binary = "*"
+python-dotenv = "*"
+httpx = "*"
+pylint = "*"
+pandas = "*"
+numpy = "*"
+
+[dev-packages]
+isort = "*"
+pylint = "*"
+
+[requires]
+python_version = "3.12"

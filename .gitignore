@@ -136,11 +136,11 @@ ENV/
 env.bak/
 venv.bak/
 
-# Spyder project settings
+# Spyder project artworks_settings
 .spyderproject
 .spyproject
 
-# Rope project settings
+# Rope project artworks_settings
 .ropeproject
 
 # mkdocs documentation
@@ -169,3 +169,10 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+#ide
+.idea
+
+# app
+**/.env
+**/app.log
