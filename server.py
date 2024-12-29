@@ -2,6 +2,8 @@ import asyncio
 import platform
 import signal
 
+from tortoise.exceptions import DBConnectionError
+
 from artworks_settings import initialize_app_env
 from artworks_core import  artworks_router
 from artworks_utils import logger, init_database
@@ -27,8 +29,11 @@ async def init_app_task():
         logger.info("Initializing ArtBloom %s", "🚀")
         await init_database()
         logger.info("Database initialized!")
+    except DBConnectionError as db_error:
+        logger.error("Database connection error during initialization: %s", db_error)
     except Exception as error:
-        logger.error("Error during initialization: %s", error)
+        logger.error("Unexpected error during initialization: %s", error)
+        raise  # Re-raise unexpected exceptions for further handling
 
 async def update_data_task():
     """
@@ -46,8 +51,11 @@ async def update_data_task():
         # Uncomment the following line to enable periodic updates:
         # await update_artworks()
         logger.info("Finished update_data!")
+    except asyncio.TimeoutError as timeout_error:
+        logger.error("Timeout occurred during update_data: %s", timeout_error)
     except Exception as error:
-        logger.error("Error during update_data: %s", error)
+        logger.error("Unexpected error during update_data: %s", error)
+        raise  # Re-raise unexpected exceptions for further handling
 
 async def run_server_task():
     """
@@ -140,12 +148,6 @@ async def main():
         logger.info("Shutdown complete.")
 
 if __name__ == "__main__":
-    """
-    Entry point for starting the ArtBloom server.
-
-    Logs:
-        - Application startup.
-        - Triggering the main event loop.
-    """
+    # Entry point for starting the ArtBloom server.
     logger.info("Starting ArtBloom server %s", "🚀🎉")
     asyncio.run(main())
